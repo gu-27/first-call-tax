@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Call Tax &amp; Legal — Local. Trusted. Connected.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark:     #1a2535;
+      --dark-dk:  #111a26;
+      --dark-lt:  #253347;
+      --green:    #2a7a5c;
+      --green-lt: #3a9a74;
+      --green-xs: #edf7f2;
+      --amber:    #c98a2a;
+      --amber-lt: #e0a840;
+      --amber-xs: #fdf6e3;
+      --cream:    #f6f8f6;
+      --muted:    #5a6a72;
+      --border:   #dce6e0;
+      --white:    #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: .85rem; text-decoration: none; }
+    .nav-logo-mark {
+      width: 36px; height: 36px; background: var(--green); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 900; color: white; letter-spacing: -.02em; flex-shrink: 0;
+    }
+    .nav-logo-text { font-weight: 900; font-size: .95rem; color: var(--dark); line-height: 1.2; }
+    .nav-logo-text span { display: block; font-weight: 500; font-size: .68rem; color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: .85rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      padding: .55rem 1.4rem; background: var(--green); color: white;
+      border: none; border-radius: 8px; font-size: .82rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; text-decoration: none; transition: background .15s;
+    }
+    .nav-cta:hover { background: var(--green-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark-dk); padding: 6rem 2.5rem 5rem;
+      position: relative; overflow: hidden;
+      min-height: 92vh; display: flex; align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(42,122,92,.1) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .hero-glow {
+      position: absolute; top: -5%; right: -5%;
+      width: 700px; height: 700px; pointer-events: none;
+      background: radial-gradient(ellipse, rgba(42,122,92,.08) 0%, transparent 65%);
+    }
+    .hero-inner {
+      max-width: 960px; margin: 0 auto; width: 100%;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--green-lt); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--green-lt); }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem); font-weight: 900; line-height: 1.02;
+      color: var(--white); letter-spacing: -.035em; margin-bottom: .5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--green-lt); }
+    .hero-connected {
+      font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 300; color: rgba(255,255,255,.35);
+      letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.75rem;
+    }
+    .hero-tagline { font-size: 1.05rem; color: rgba(255,255,255,.6); line-height: 1.8; max-width: 560px; margin-bottom: 2.25rem; }
+    .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary {
+      padding: .9rem 2rem; background: var(--green); color: white;
+      border: none; border-radius: 10px; font-size: .92rem; font-weight: 800;
+      cursor: pointer; font-family: inherit; text-decoration: none;
+      transition: background .15s; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary:hover { background: var(--green-lt); }
+    .btn-secondary {
+      padding: .9rem 1.75rem; background: transparent; color: white;
+      border: 1.5px solid rgba(255,255,255,.2); border-radius: 10px;
+      font-size: .92rem; font-weight: 600; cursor: pointer; font-family: inherit;
+      text-decoration: none; transition: all .15s; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-secondary:hover { border-color: white; background: rgba(255,255,255,.07); }
+    .hero-trust { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: .5rem; }
+    .hero-trust-item span { font-size: .75rem; color: rgba(255,255,255,.45); font-weight: 500; }
+    .hero-trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-lt); flex-shrink: 0; }
+
+    /* ── VALUES BAR ── */
+    .values-bar {
+      background: var(--green); padding: .9rem 2.5rem; text-align: center;
+      font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap;
+    }
+    .values-bar span { opacity: .4; margin: 0 1rem; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 5.5rem 2.5rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: .63rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--green); margin-bottom: .85rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .section-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--green); }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; line-height: 1.1;
+      color: var(--dark); margin-bottom: 1rem; letter-spacing: -.025em;
+    }
+    .section-sub { font-size: .975rem; color: var(--muted); line-height: 1.8; max-width: 560px; margin-bottom: 3rem; }
+
+    /* ── PROBLEM SECTION ── */
+    .problem-bg { background: var(--cream); }
+    .problem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 3rem; }
+    .problem-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem 1.75rem; position: relative; overflow: hidden;
+    }
+    .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--border); }
+    .problem-card.gap::before { background: var(--green); }
+    .problem-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .85rem;
+    }
+    .problem-card.gap .problem-label { color: var(--green); }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: .6rem; line-height: 1.3; }
+    .problem-card p { font-size: .855rem; color: var(--muted); line-height: 1.75; }
+    .problem-arrow {
+      text-align: center; font-size: 1.5rem; color: var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--dark); position: relative; overflow: hidden; }
+    .how-bg::before {
+      content: '1'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
+      font-size: 22rem; font-weight: 900; color: rgba(255,255,255,.02);
+      pointer-events: none; user-select: none; line-height: 1;
+    }
+    .how-bg .section-eyebrow { color: rgba(255,255,255,.45); }
+    .how-bg .section-eyebrow::before { background: var(--green); }
+    .how-bg .section-title { color: white; }
+    .how-bg .section-sub { color: rgba(255,255,255,.5); }
+    .how-steps { display: flex; flex-direction: column; gap: 0; }
+    .how-step {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 2rem; align-items: start; padding: 2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: relative;
+    }
+    .how-step:last-child { border-bottom: none; }
+    .how-num {
+      width: 56px; height: 56px; border-radius: 16px; flex-shrink: 0;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      color: var(--green-lt); font-size: 1.2rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .how-step-content h3 { font-size: 1.05rem; font-weight: 800; color: white; margin-bottom: .5rem; }
+    .how-step-content p { font-size: .875rem; color: rgba(255,255,255,.55); line-height: 1.75; }
+    .how-branch {
+      margin-top: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .how-branch-card {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px; padding: 1rem 1.25rem;
+    }
+    .how-branch-card.featured { border-color: rgba(42,122,92,.4); background: rgba(42,122,92,.08); }
+    .how-branch-label { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .35rem; }
+    .how-branch-card.featured .how-branch-label { color: var(--green-lt); }
+    .how-branch-title { font-size: .875rem; font-weight: 700; color: white; margin-bottom: .25rem; }
+    .how-branch-desc { font-size: .78rem; color: rgba(255,255,255,.45); line-height: 1.6; }
+
+    /* ── NETWORK ── */
+    .network-bg { background: var(--cream); }
+    .network-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .network-card {
+      background: white; border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem; transition: box-shadow .2s, transform .2s;
+    }
+    .network-card:hover { box-shadow: 0 8px 32px rgba(26,37,53,.08); transform: translateY(-2px); }
+    .network-card.featured {
+      border-color: var(--green); background: var(--green-xs);
+      grid-column: span 1;
+    }
+    .network-card-label { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; }
+    .network-card.featured .network-card-label { color: var(--green); }
+    .network-card h3 { font-size: .95rem; font-weight: 800; color: var(--dark); margin-bottom: .4rem; line-height: 1.3; }
+    .network-card p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
+    .network-sister-badge {
+      display: inline-flex; align-items: center; gap: .35rem; margin-top: .85rem;
+      background: var(--green); color: white;
+      font-size: .65rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      padding: .25rem .7rem; border-radius: 999px;
+    }
+
+    /* ── WHY LOCAL ── */
+    .why-bg { background: var(--white); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .why-list { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .why-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem; background: var(--cream); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .why-item-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+    .why-item-title { font-size: .875rem; font-weight: 800; color: var(--dark); margin-bottom: .2rem; }
+    .why-item-desc { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+    .why-compare {
+      background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;
+    }
+    .why-compare h3 { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 1.5rem; }
+    .compare-row { display: flex; flex-direction: column; gap: .75rem; }
+    .compare-item {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: .5rem; font-size: .75rem; align-items: center;
+    }
+    .compare-header { font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .compare-cell { padding: .5rem .6rem; border-radius: 6px; line-height: 1.4; color: var(--muted); }
+    .compare-cell.good { background: var(--green-xs); color: var(--green); font-weight: 700; }
+    .compare-cell.bad { color: #b04444; }
+    .compare-cell.ok { color: var(--amber); }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: var(--dark); position: relative; overflow: hidden; }
+    .contact-bg::before {
+      content: ''; position: absolute; top: -20%; right: -10%;
+      width: 600px; height: 600px; pointer-events: none;
+      background: radial-gradient(ellipse, rgba(42,122,92,.12) 0%, transparent 65%);
+    }
+    .contact-bg .section-eyebrow { color: rgba(255,255,255,.4); }
+    .contact-bg .section-eyebrow::before { background: var(--green-lt); }
+    .contact-bg .section-title { color: white; }
+    .contact-bg .section-sub { color: rgba(255,255,255,.5); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-card {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px; padding: 2.5rem;
+    }
+    .contact-card h3 { font-size: 1.1rem; font-weight: 900; color: white; margin-bottom: .35rem; }
+    .contact-sub { font-size: .82rem; color: rgba(255,255,255,.45); margin-bottom: 1.5rem; line-height: 1.55; }
+    .free-badge {
+      display: inline-flex; align-items: center; gap: .4rem; margin-bottom: 1.5rem;
+      background: rgba(42,122,92,.2); border: 1px solid rgba(42,122,92,.4);
+      color: var(--green-lt); font-size: .72rem; font-weight: 800;
+      padding: .3rem .9rem; border-radius: 999px; letter-spacing: .04em;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: .72rem; font-weight: 700; color: rgba(255,255,255,.6); margin-bottom: .4rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: .65rem .9rem;
+      border: 1.5px solid rgba(255,255,255,.1); border-radius: 9px;
+      font-family: inherit; font-size: .875rem; color: white;
+      background: rgba(255,255,255,.06); transition: border-color .15s; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-lt); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group select option { background: var(--dark); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .btn-submit {
+      width: 100%; padding: .9rem; background: var(--green); color: white;
+      border: none; border-radius: 10px; font-size: .95rem; font-weight: 800;
+      cursor: pointer; font-family: inherit; transition: background .15s; margin-top: .5rem;
+    }
+    .btn-submit:hover { background: var(--green-lt); }
+    .form-note { font-size: .7rem; color: rgba(255,255,255,.3); text-align: center; margin-top: .75rem; line-height: 1.55; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; padding-top: 1rem; }
+    .contact-info-item { display: flex; flex-direction: column; gap: .3rem; }
+    .contact-info-label { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+    .contact-info-value { font-size: .95rem; font-weight: 600; color: white; }
+    .contact-info-sub { font-size: .78rem; color: rgba(255,255,255,.4); line-height: 1.55; }
+
+    /* ── SISTER COMPANY BANNER ── */
+    .sister-banner {
+      background: var(--dark-lt); border-top: 1px solid rgba(255,255,255,.06);
+      padding: 2.5rem; text-align: center;
+    }
+    .sister-banner-inner { max-width: 700px; margin: 0 auto; }
+    .sister-banner p { font-size: .82rem; color: rgba(255,255,255,.4); line-height: 1.7; margin-bottom: 1rem; }
+    .sister-banner strong { color: rgba(255,255,255,.7); }
+    .sister-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.5rem; border: 1px solid rgba(42,122,92,.5);
+      border-radius: 8px; color: var(--green-lt); font-size: .82rem; font-weight: 700;
+      text-decoration: none; transition: all .15s;
+    }
+    .sister-link:hover { background: rgba(42,122,92,.1); border-color: var(--green-lt); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark-dk); }
+    .footer-top {
+      max-width: 1100px; margin: 0 auto; padding: 2rem 2.5rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-logo-text { font-weight: 800; font-size: .9rem; color: rgba(255,255,255,.85); line-height: 1.2; }
+    .footer-logo-text span { display: block; font-size: .65rem; font-weight: 500; color: var(--green-lt); margin-top: .15rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: .78rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .15s; }
+    .footer-links a:hover { color: var(--green-lt); }
+    .footer-bottom { text-align: center; padding: 1.25rem 2.5rem; font-size: .7rem; color: rgba(255,255,255,.18); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .network-grid { grid-template-columns: repeat(2,1fr); }
+      .problem-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .how-branch { grid-template-columns: 1fr; }
+      .network-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 4rem; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">FC</div>
+    <div class="nav-logo-text">
+      First Call Tax &amp; Legal
+      <span>Local · Trusted · Connected</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#network">Our Network</a></li>
+    <li><a href="#why">Why Local</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk — Free</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Inland Northwest · Tax · Legal · Referral</div>
+    <h1>Your <em>First Call</em> for<br>Any Tax or Legal Question</h1>
+    <div class="hero-connected">Connected.</div>
+    <p class="hero-tagline">
+      Not sure if you need a CPA, a tax attorney, or a legal specialist? That's exactly why we exist. We evaluate your situation, handle what we can directly, and connect you with the right local expert for everything else.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Let's Talk — It's Free
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#how" class="btn-secondary">See How It Works</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item"><div class="hero-trust-dot"></div><span>Free to Start</span></div>
+      <div class="hero-trust-item"><div class="hero-trust-dot"></div><span>No Commitment</span></div>
+      <div class="hero-trust-item"><div class="hero-trust-dot"></div><span>Local Network</span></div>
+      <div class="hero-trust-item"><div class="hero-trust-dot"></div><span>Credentialed Evaluation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES BAR ── -->
+<div class="values-bar">
+  Local <span>·</span> Trusted <span>·</span> Connected <span>·</span> Credentialed <span>·</span> Serving Spokane, Coeur d'Alene &amp; the Inland Northwest
+</div>
+
+<!-- ── PROBLEM ── -->
+<section class="problem-bg" id="problem">
+  <div class="section-inner">
+    <div class="section-eyebrow">The Gap We Fill</div>
+    <h2 class="section-title">Most people are stuck<br>between two bad options.</h2>
+    <p class="section-sub">The tax and legal landscape has two ends — and most people fall through the middle.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-label">Option A</div>
+        <h3>Online Services &amp; Apps</h3>
+        <p>Convenient and cheap, but impersonal. You don't know who you're dealing with, there's no real relationship, and they can't make a meaningful local referral. You get a form — not a conversation.</p>
+      </div>
+      <div class="problem-card gap">
+        <div class="problem-label">The Gap — That's Us</div>
+        <h3>First Call Tax &amp; Legal</h3>
+        <p>A local, credentialed professional who evaluates your situation, handles what they can, and connects you with exactly the right expert when you need one. Real conversation. Real accountability.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-label">Option B</div>
+        <h3>Large Specialty Firms</h3>
+        <p>Deep expertise — but only if you already know what you need. They don't take triage calls. They're expensive, formal, and built for complex engagements. Not your first call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-bg" id="how">
+  <div class="section-inner">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">Simple from the start.</h2>
+    <p class="section-sub">Low commitment to start. High value from the first conversation.</p>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-step-content">
+          <h3>Just Reach Out</h3>
+          <p>Send a message or request a call. A few sentences is enough — just tell us what's going on. No intake forms, no fees, no commitment. We respond within 24 hours.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-step-content">
+          <h3>We Evaluate Your Situation</h3>
+          <p>We have a free 30-minute conversation. We listen, ask the right questions, identify what kind of question it actually is — tax, legal, or both — and assess the urgency and risk. You get a clear picture of what you're dealing with.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-step-content">
+          <h3>Two Paths Forward — Both Good</h3>
+          <p>Based on what we find, we take one of two routes:</p>
+          <div class="how-branch">
+            <div class="how-branch-card featured">
+              <div class="how-branch-label">If We Can Handle It</div>
+              <div class="how-branch-title">Internal Advisory</div>
+              <div class="how-branch-desc">We give you a clear scope and quote. Tax guidance, legal questions, IRS correspondence, document review — handled directly by a credentialed JD &amp; MAccT.</div>
+            </div>
+            <div class="how-branch-card">
+              <div class="how-branch-label">If You Need a Specialist</div>
+              <div class="how-branch-title">Connected to the Right Expert</div>
+              <div class="how-branch-desc">We help you evaluate your options, explain what type of professional you need, and make a warm introduction to a vetted local firm — not a Google result.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div class="how-step-content">
+          <h3>You Move Forward with Clarity</h3>
+          <p>Either way, you leave knowing exactly what you're dealing with, what it will take to resolve it, and who's in your corner. No confusion, no dead ends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NETWORK ── -->
+<section class="network-bg" id="network">
+  <div class="section-inner">
+    <div class="section-eyebrow">Our Network</div>
+    <h2 class="section-title">Connected to quality<br>resources across the INW.</h2>
+    <p class="section-sub">When your situation calls for a specialist, we don't hand you a list — we make a real introduction to someone we know and trust.</p>
+
+    <div class="network-grid">
+
+      <div class="network-card featured">
+        <div class="network-card-label">Sister Practice · First Stop</div>
+        <h3>Inland NW Tax &amp; Legal</h3>
+        <p>Our sister advisory practice. When your question can be handled directly — tax guidance, legal research, IRS correspondence, document review — we engage Inland NW Tax &amp; Legal for a credentialed, personal advisory engagement.</p>
+        <div class="network-sister-badge">✓ Sister Company</div>
+      </div>
+
+      <div class="network-card">
+        <div class="network-card-label">Specialty Resource</div>
+        <h3>Tax Litigation &amp; IRS Representation</h3>
+        <p>When your situation involves an audit, tax court, or formal IRS dispute, we connect you with vetted tax litigation specialists who handle exactly this.</p>
+      </div>
+
+      <div class="network-card">
+        <div class="network-card-label">Specialty Resource</div>
+        <h3>Estate &amp; Trust Planning</h3>
+        <p>Wills, trusts, estate tax planning, probate — we connect you with the right estate planning attorney for your situation and complexity level.</p>
+      </div>
+
+      <div class="network-card">
+        <div class="network-card-label">Specialty Resource</div>
+        <h3>Business &amp; Contract Law</h3>
+        <p>Formation, operating agreements, contract review, disputes — we match you with business attorneys who understand the Inland Northwest landscape.</p>
+      </div>
+
+      <div class="network-card">
+        <div class="network-card-label">Specialty Resource</div>
+        <h3>CPA Firms &amp; Complex Returns</h3>
+        <p>When your tax situation needs a full-service CPA firm — multi-entity, multi-state, complex returns — we refer you to firms we know and trust.</p>
+      </div>
+
+      <div class="network-card">
+        <div class="network-card-label">Specialty Resource</div>
+        <h3>Not Sure What You Need?</h3>
+        <p>That's what we're here for. Bring us the situation — we'll figure out which resource makes the most sense. You don't need to know before you call.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY LOCAL ── -->
+<section class="why-bg" id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <div class="section-eyebrow">Why Local Matters</div>
+        <h2 class="section-title">An algorithm can't<br>make a warm introduction.</h2>
+        <p class="section-sub">Online services give you forms. Big firms give you invoices. We give you a real conversation with someone who knows the local landscape — and the local professionals.</p>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-item-icon">🤝</div>
+            <div>
+              <div class="why-item-title">Real Relationships, Not Search Results</div>
+              <div class="why-item-desc">When we refer you to an attorney or firm, it's someone we know personally. That introduction carries weight — and saves you from finding out the hard way who the wrong choice is.</div>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-item-icon">📍</div>
+            <div>
+              <div class="why-item-title">Accountable to the Community</div>
+              <div class="why-item-desc">We live and work in the Inland Northwest. We're not a call center or an algorithm. Our reputation is tied to every person we help and every referral we make.</div>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-item-icon">🧭</div>
+            <div>
+              <div class="why-item-title">Credentialed to Evaluate, Not Just Route</div>
+              <div class="why-item-desc">A JD and Master of Accountancy in Taxation means we can actually evaluate your situation — not just take your description and send you somewhere. We know what you're dealing with before we connect you.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-compare">
+        <h3>How we compare</h3>
+        <div class="compare-row">
+          <div class="compare-item compare-header">
+            <div>What you get</div>
+            <div>Online Services</div>
+            <div>First Call</div>
+          </div>
+          <div class="compare-item">
+            <div style="font-size:.78rem;color:var(--muted);">Real conversation</div>
+            <div class="compare-cell bad">✗ Form or chat bot</div>
+            <div class="compare-cell good">✓ Always</div>
+          </div>
+          <div class="compare-item">
+            <div style="font-size:.78rem;color:var(--muted);">Credentialed evaluation</div>
+            <div class="compare-cell bad">✗ Algorithm</div>
+            <div class="compare-cell good">✓ JD + MAccT</div>
+          </div>
+          <div class="compare-item">
+            <div style="font-size:.78rem;color:var(--muted);">Local referrals</div>
+            <div class="compare-cell bad">✗ Generic list</div>
+            <div class="compare-cell good">✓ Warm intro</div>
+          </div>
+          <div class="compare-item">
+            <div style="font-size:.78rem;color:var(--muted);">Free to start</div>
+            <div class="compare-cell ok">~ Sometimes</div>
+            <div class="compare-cell good">✓ Always</div>
+          </div>
+          <div class="compare-item">
+            <div style="font-size:.78rem;color:var(--muted);">No commitment</div>
+            <div class="compare-cell ok">~ Varies</div>
+            <div class="compare-cell good">✓ Zero pressure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-bg" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="section-eyebrow">Get Started</div>
+        <h2 class="section-title">Just tell us<br>what's going on.</h2>
+        <p class="section-sub">A few sentences is all we need. We'll follow up within 24 hours — and whatever comes next is entirely at your pace.</p>
+
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-value">Spokane / Coeur d'Alene</div>
+            <div class="contact-info-sub">Serving the Inland Northwest — in person or remote.</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">First Conversation</div>
+            <div class="contact-info-value">Always Free</div>
+            <div class="contact-info-sub">30 minutes. No forms to fill out first. No obligation after.</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Response Time</div>
+            <div class="contact-info-value">Within 24 Hours</div>
+            <div class="contact-info-sub">We read every message personally and respond the same day.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="free-badge">✓ Free · No Commitment · No Jargon</div>
+        <h3>Tell Us What's Going On</h3>
+        <p class="contact-sub">A few sentences is fine. We'll figure out the rest together.</p>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" name="first_name" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" name="last_name" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="jane@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Phone (optional)</label>
+            <input type="tel" name="phone" placeholder="(509) 555-0100">
+          </div>
+          <div class="form-group">
+            <label>What type of question do you have?</label>
+            <select name="question_type">
+              <option value="">Select one — or just skip it</option>
+              <option>Individual Tax Question</option>
+              <option>Business / Corporate Tax</option>
+              <option>IRS Notice or Audit</option>
+              <option>Tax Planning &amp; Strategy</option>
+              <option>Legal Question</option>
+              <option>Need an Attorney or Specialist</option>
+              <option>Not Sure — Need Help Figuring It Out</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell us what's going on</label>
+            <textarea name="description" placeholder="A few sentences is fine — just tell us the situation. We'll ask follow-up questions if we need more." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message →</button>
+          <p class="form-note">Confidential. Responded to within 24 hours. No obligation to go further.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SISTER COMPANY BANNER ── -->
+<div class="sister-banner">
+  <div class="sister-banner-inner">
+    <p>Need direct tax or legal advisory services? Our sister practice, <strong>Inland NW Tax &amp; Legal</strong>, provides credentialed tax guidance, legal research, IRS correspondence, and document review for individuals and businesses across the Inland Northwest.</p>
+    <a href="https://gu-27.github.io/inland-nw-tax/" target="_blank" class="sister-link">
+      Visit Inland NW Tax &amp; Legal →
+    </a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-text">
+        First Call Tax &amp; Legal
+        <span>Local · Trusted · Connected · Inland Northwest</span>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#how">How It Works</a>
+      <a href="#network">Our Network</a>
+      <a href="#why">Why Local</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 First Call Tax &amp; Legal &nbsp;·&nbsp; Spokane, WA &nbsp;·&nbsp; The information on this site is for general informational purposes only and does not constitute legal or tax advice.
+  </div>
+</footer>
+
+</body>
+</html>
